@@ -13,8 +13,6 @@ import os.path
 # locate_lst_day (my_period, my_data, my_df, my_column_date)
 # time_guarantee(my_contract, year_ini, year_end, my_df)
 #
-#
-#
 
 
 def max_dd_evol(guarantee, my_serie):                    # to get a dataframe with drawdown evolution
@@ -246,7 +244,7 @@ def time_guarantee(my_contract, year_ini, year_end, my_df):
     if my_contract == 'NQ':
         my_guarantee = 15000 * 2                             # between 5000$ and 45000$
         my_multiplier = 20
-        my_tic = 1
+        my_tic = 0.25
     if my_contract == 'CL':
         my_guarantee = 5000 * 2                             # between 2000$ and 18000$
         my_multiplier = 1000
@@ -254,7 +252,7 @@ def time_guarantee(my_contract, year_ini, year_end, my_df):
     if my_contract == 'RTY':
         my_guarantee = 7000 * 2                             # between 2000$ and 20000$
         my_multiplier = 50
-        my_tic = 1
+        my_tic = 0.1
 
     int_date_0 = year_ini * 10000 + 1 * 100 + 1              # the day d0 = date(2008, 8, 18)
     int_date_1 = year_end * 10000 + 12 * 100 + 31              # the day d0 = date(2008, 8, 18)
@@ -265,7 +263,7 @@ def time_guarantee(my_contract, year_ini, year_end, my_df):
     delta = d1 - d0
     delta_sec = delta.total_seconds()
     delta_years = delta_sec/(365*24*60*60)
-    return my_multiplier, my_guarantee, delta_years
+    return my_multiplier, my_guarantee, delta_years, my_tic
 
 
 ###########################################################################33
@@ -335,7 +333,7 @@ def short_long_operationLLEX(my_contract, year_ini, year_end, my_df, limit_qty, 
         continue_no_changes = 1
 
         if operation == long:
-            result_accum_pts = result_accum_pts + long_result - tic
+            result_accum_pts = result_accum_pts + long_result
             result_accum_amt = result_accum_amt + (long_result - tic) * contract_qty * my_multiplier
 
             if (long_accum < limit) & (continue_no_changes == 1):  # overcome the limit and change to shorts
@@ -370,8 +368,8 @@ def short_long_operationLLEX(my_contract, year_ini, year_end, my_df, limit_qty, 
                 continue_no_changes = 0
 
         if operation == short:
-            result_accum_pts = result_accum_pts + short_result - tic
-            result_accum_amt = result_accum_amt + short_result * contract_qty * my_multiplier
+            result_accum_pts = result_accum_pts + short_result
+            result_accum_amt = result_accum_amt + (short_result - tic) * contract_qty * my_multiplier
 
             if (long_accum > limit) & (continue_no_changes == 1):  # overcome limit and change
                 operation_ant = short
@@ -483,7 +481,7 @@ def short_long_operationFLIP( my_contract, year_ini, year_end, my_df, my_multipl
         continue_no_changes = 1
 
         if operation == long:
-            result_accum_pts = result_accum_pts + long_result - tic
+            result_accum_pts = result_accum_pts + long_result
             result_accum_amt = result_accum_amt + (long_result - tic) * contract_qty * my_multiplier
 
             if (long_result < 0) & (continue_no_changes == 1):        # bad long performance and change to shorts
@@ -492,8 +490,8 @@ def short_long_operationFLIP( my_contract, year_ini, year_end, my_df, my_multipl
                 continue_no_changes = 0
 
         if operation == short:
-            result_accum_pts = result_accum_pts + short_result - tic
-            result_accum_amt = result_accum_amt + short_result * contract_qty * my_multiplier
+            result_accum_pts = result_accum_pts + short_result
+            result_accum_amt = result_accum_amt + (short_result - tic) * contract_qty * my_multiplier
 
             if (short_result < 0) & (continue_no_changes == 1):          # bad short performance and change to long
                 operation_ant = short
@@ -589,7 +587,7 @@ def short_long_operationLSEX (my_contract, year_ini, year_end, my_df, limit_qty,
         continue_no_changes = 1
 
         if operation == long:
-            result_accum_pts = result_accum_pts + long_result - tic
+            result_accum_pts = result_accum_pts + long_result
             result_accum_amt = result_accum_amt + (long_result - tic) * contract_qty * my_multiplier
 
             if (long_accum < limit) & (continue_no_changes == 1):  # overcome the limit and change to shorts
@@ -624,8 +622,8 @@ def short_long_operationLSEX (my_contract, year_ini, year_end, my_df, limit_qty,
                 continue_no_changes = 0
 
         if operation == short:
-            result_accum_pts = result_accum_pts + short_result - tic
-            result_accum_amt = result_accum_amt + short_result * contract_qty * my_multiplier
+            result_accum_pts = result_accum_pts + short_result
+            result_accum_amt = result_accum_amt + (short_result - tic) * contract_qty * my_multiplier
 
             if (short_accum < limit) & (continue_no_changes == 1):  # overcome limit and change
                 operation_ant = short

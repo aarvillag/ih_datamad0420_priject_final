@@ -22,8 +22,8 @@ st.title('     Investment Systems Tool')
 st.title('With Futures Intraday Strategies')
 
 st.sidebar.text('Select a future contract:\n')
-s_contract = st.sidebar.select_slider('(ES = SP500 | NQ = NASDAQ | YM = DOW JONES | CL = CRUDE OIL | RTY = RUSSELL2000)',
-     options=['ES', 'NQ', 'YM', 'CL', 'RTY'],
+s_contract = st.sidebar.select_slider('(ES = SP500 | NQ = NASDAQ | YM = DOW JONES | CL = CRUDE OIL | RLY = RUSSEL2000)',
+     options=['ES', 'NQ', 'YM', 'CL', 'RLY'],
      value=('ES'))
 
 st.sidebar.text('Select a timetable to operate:\n')
@@ -50,7 +50,7 @@ s_year_ini = st.sidebar.select_slider('to start',
 
 s_year_end = st.sidebar.select_slider('to finish',
      options=[2014, 2015, 2016, 2017, 2018, 2019, 2020],
-     value=(2014))
+     value=(2020))
 
 if s_year_end < s_year_ini:
     st.warning('Please year to finish analysis wrong. It must be equal or greater than year to start analysis')
@@ -59,6 +59,8 @@ if s_year_end < s_year_ini:
 strategies_tab_on = st.sidebar.checkbox('Generate a sumary table with all strategies that you check')
 
 reset_strg_tab_on = st.sidebar.checkbox('Reset the table with registered strategies(delete dataset)')
+
+execute_preproc_on = st.sidebar.checkbox('Execute the preprocess for all options')
 
 
 
@@ -87,7 +89,12 @@ zero = '0'
 key_config = s_contract+s_timetable[0:2]+s_timetable[3:5]+s_timetable[6:8]+s_timetable[9:]
 key_config = key_config + str(s_rng_years)+str(s_rng_adjust)
 
-st.text(f'file preprocessed {key_config}')
+tmp=subprocess.run(['../RangingOperating', s_contract, s_timetable, str(s_rng_years), str(s_rng_adjust)], capture_output=False, stdout=None)
+
+if tmp.returncode != 9:
+    st.write(f'Error = File not processed({tmp.returncode})')
+else:
+    st.text(f'file processed {key_config}')
 
 my_file=f'../Data/{key_config}_03.csv'
 

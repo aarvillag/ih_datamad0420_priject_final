@@ -244,7 +244,7 @@ def time_guarantee(my_contract, year_ini, year_end, my_df):
     if my_contract == 'NQ':
         my_guarantee = 15000 * 2                             # between 5000$ and 45000$
         my_multiplier = 20
-        my_tic = 1
+        my_tic = 0.25
     if my_contract == 'CL':
         my_guarantee = 5000 * 2                             # between 2000$ and 18000$
         my_multiplier = 1000
@@ -252,7 +252,7 @@ def time_guarantee(my_contract, year_ini, year_end, my_df):
     if my_contract == 'RTY':
         my_guarantee = 7000 * 2                             # between 2000$ and 20000$
         my_multiplier = 50
-        my_tic = 1
+        my_tic = 0.1
 
     int_date_0 = year_ini * 10000 + 1 * 100 + 1              # the day d0 = date(2008, 8, 18)
     int_date_1 = year_end * 10000 + 12 * 100 + 31              # the day d0 = date(2008, 8, 18)
