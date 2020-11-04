@@ -111,7 +111,7 @@ my_multiplier, my_guarantee, my_delta_time, my_tic = time_guarantee(s_contract, 
 #df_result.to_csv(f'../Data/{s_contract}_04.csv', index=False)                                      # XX_04
 
 
-tmp=subprocess.run(['../LongShort', s_contract, str(s_year_ini), str(s_year_end), my_file, str(axs_limit), str(s_axs_target), str(my_multiplier), str(my_tic), 'LSEX'],
+tmp=subprocess.run(['../LongShort', s_contract, str(s_year_ini), str(s_year_end), my_file, str(axs_limit), str(s_axs_target), str(my_multiplier), str(my_tic), 'LLEX'],
                   capture_output=False, stdout=None)
 
 if tmp.returncode != 9:

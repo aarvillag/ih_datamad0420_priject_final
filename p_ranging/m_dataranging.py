@@ -282,14 +282,14 @@ def range_trail_estimation(my_contract, years, adjustment, updating, my_df):
 def trail_round(my_avg, my_adj, my_contract):
     my_round = 0
     if my_contract == 'ES':
-        my_round = round(my_avg * my_adj, 0) + 1                # Round to units
+        my_round = round(my_avg * my_adj + 0.5, 0) + 1                # Round to units
     if my_contract == 'NQ':
-        my_round = round(my_avg * my_adj, 0) + 1                # Round to units
+        my_round = round(my_avg * my_adj + 0.5, 0) + 1                # Round to units
     if my_contract == 'YM':
-        my_round = round(my_avg * my_adj, -1) + 10             # Round to tens
+        my_round = round(my_avg * my_adj + 5, -1) + 10             # Round to tens
     if my_contract == 'CL':
-        my_round = round(my_avg * my_adj, 1) + 0.1                # Round to tenths
+        my_round = round(my_avg * my_adj + 0.05, 1) + 0.1                # Round to tenths
     if my_contract == 'RTY':
-        my_round = round(my_avg * my_adj, 0) + 1                # Round to units
+        my_round = round(my_avg * my_adj + 0.5, 0) + 1                # Round to units
 
     return my_round

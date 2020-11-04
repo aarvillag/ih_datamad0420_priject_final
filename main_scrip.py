@@ -166,7 +166,7 @@ def time_guarantee(my_contract, year_ini, year_end, my_df):
         my_tic = 0.01
     if my_contract == 'RTY':
         my_guarantee = 7000 * 2                             # between 2000$ and 20000$
-        my_multiplier = 50
+        my_multiplier = 5
         my_tic = 1
     int_date_0 = year_ini * 10000 + 1 * 100 + 1              # the day d0 = date(2008, 8, 18)
     int_date_1 = year_end * 10000 + 12 * 100 + 31              # the day d0 = date(2008, 8, 18)

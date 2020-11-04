@@ -133,7 +133,7 @@ int redondeoSegunContrato(float mi_numerito);
 
 //Variables globales y valores iniciales en MAYUSCULAS.
 
-char MIRUTA[100]; // *** ruta de ficheros
+char MIRUTA[100];                                  // *** ruta de ficheros
 char MIINPUT[100]="OperaFuturos=Input.txt";        // ***** Fichero a importar informacion  a tratar
 char MIFICHERO[100]="OperaFuturos=Input.txt";    
 char MICONTRATO[10]="ES";				// ***************** Contrato a analizar

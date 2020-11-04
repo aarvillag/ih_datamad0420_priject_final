@@ -63,30 +63,28 @@ int main (int argc, char *argv[])
 	int arg, seguir=0, b;
 
 	for (arg=0; arg<argc; ++arg)
-		printf("argumento %d is %s \n", arg, argv[arg]);
+		printf("arg %d > %s || ", arg, argv[arg]);
 
 	
 	strcpy(myd,MiDirectorioActual());
 
 	snprintf(my_contract, sizeof my_contract, "%s", argv[1]);
-	printf("MY_CONTRACT = %s\n", my_contract );
-	snprintf(my_year_ini, sizeof my_year_ini, "%s", argv[2]);
-	printf("MY_YEAR_INI = %s\n", my_year_ini );
-	snprintf(my_year_end, sizeof my_year_end, "%s", argv[3]);
-	printf("MY_YEAR_END = %s\n", my_year_end );
-	snprintf(my_df, sizeof my_df, "%s", argv[4]);
-	printf("MY_DF = %s\n", my_df );
-	snprintf(my_limit_qty, sizeof my_limit_qty, "%s", argv[5]);
-	printf("MY_LIMIT_QTY = %s\n", my_limit_qty );
-	snprintf(my_target_qty, sizeof my_target_qty, "%s", argv[6]);
-	printf("MY_TARGET_QTY = %s\n", my_target_qty );
-	snprintf(my_multiplier, sizeof my_multiplier, "%s", argv[7]);
-	printf("MY_MULTIPLER = %s\n", my_multiplier );
-	snprintf(my_tic, sizeof my_tic, "%s", argv[8]);
-	printf("MY_TIC = %s\n", my_tic );
-	snprintf(my_sys, sizeof my_sys, "%s", argv[9]);
-	printf("MY_SYS = %s\n", my_sys );
 
+	snprintf(my_year_ini, sizeof my_year_ini, "%s", argv[2]);
+
+	snprintf(my_year_end, sizeof my_year_end, "%s", argv[3]);
+
+	snprintf(my_df, sizeof my_df, "%s", argv[4]);
+
+	snprintf(my_limit_qty, sizeof my_limit_qty, "%s", argv[5]);
+
+	snprintf(my_target_qty, sizeof my_target_qty, "%s", argv[6]);
+
+	snprintf(my_multiplier, sizeof my_multiplier, "%s", argv[7]);
+
+	snprintf(my_tic, sizeof my_tic, "%s", argv[8]);
+
+	snprintf(my_sys, sizeof my_sys, "%s", argv[9]);
 
 	printf("My_DF = %s\n", argv[4]);
 	seguir=0;
@@ -94,7 +92,7 @@ int main (int argc, char *argv[])
 	snprintf(my_file, sizeof my_file, "%s", argv[4]);
 	snprintf(my_path, sizeof my_path, "%s","/home/agustin/ironhack/ih_datamadpt0420_project_final/Data/");
 	snprintf(my_pathfile, sizeof my_pathfile, "%s%s", my_path, my_file);
-	printf("%s\n", my_file );
+	
 	printf("%s\n", my_pathfile );
 
 	
@@ -109,11 +107,11 @@ int main (int argc, char *argv[])
 
 	if (strcmp(my_sys,"LLEX")==0)
 	{
-		seguir=seguir+OperacionTecnicaLLEX(my_year_ini, my_year_end, my_limit_qty, my_target_qty, my_multiplier, my_tic);
+		seguir=seguir+OperacionTecnicaLLEX(my_year_ini, my_year_end, my_limit_qty, my_target_qty, my_multiplier, my_tic);   // 3
 	}
 	else if (strcmp(my_sys,"LSEX")==0)
 	{
-		seguir=seguir+OperacionTecnicaLSEX(my_year_ini, my_year_end, my_limit_qty, my_target_qty, my_multiplier, my_tic);
+		seguir=seguir+OperacionTecnicaLSEX(my_year_ini, my_year_end, my_limit_qty, my_target_qty, my_multiplier, my_tic);      // 3
 	}
 
 
@@ -121,7 +119,7 @@ int main (int argc, char *argv[])
 	printf("Generando output en %s\n", my_pathfile);
 	seguir=seguir+escribeResultadoTecnicaEX(my_pathfile);                                  // 5
 
-	printf("Seguir=%d\n",seguir);
+	printf("Finalizado ============ Output=%d\n",seguir);
 
 	return seguir;
 

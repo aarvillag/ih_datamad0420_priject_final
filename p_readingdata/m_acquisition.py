@@ -21,11 +21,11 @@ def data_input (file_input):                   # load file input and create a da
     my_err=''
     for i in range(len(my_df_i)):
         my_df_i['contract'][i]=my_df_i['contract'][i].upper()
-        if my_df_i['contract'][i] not in ['ES', 'YM', 'NQ', 'CL']:
-            my_err='contract not valid (only ES, YM, NQ or CL'
-        if my_df_i['t_ini'][i] not in ['01:00','09:00','15:00']:
+        if my_df_i['contract'][i] not in ['ES', 'YM', 'NQ', 'CL', 'RTY']:
+            my_err='contract not valid (only ES, YM, NQ, RTY or CL'
+        if my_df_i['t_ini'][i] not in ['01:00', '09:00', '15:00']:
             my_err='initial timetable not valid (only 01:00,09:00 or 15:00)'
-        if my_df_i['t_end'][i] not in ['08:30','18:30','22:30']:
+        if my_df_i['t_end'][i] not in ['08:30', '18:30', '22:30']:
             my_err='final timetable not valid (only 08:30,18:30 or 22:30)'
         my_ini_time = int(my_df_i['t_ini'][i][0:2]) * 100 + int(my_df_i['t_ini'][i][4:])
         my_end_time = int(my_df_i['t_end'][i][0:2]) * 100 + int(my_df_i['t_end'][i][4:])
@@ -38,7 +38,7 @@ def data_input (file_input):                   # load file input and create a da
         if my_df_i['y_end'][i] < my_df_i['y_ini'][i]:
             my_err = 'final year is not valid, it mus be grater than initial year'
         if my_df_i['rng_years'][i] not in [1, 2, 3, 4, 5]:
-            my_err='years for range is not valid (only 1, 2, 3, 4, 5)'
+            my_err = 'years for range is not valid (only 1, 2, 3, 4, 5)'
         if my_df_i['rng_adjust'][i] not in [0.65, 0.70, 0.75, 0.80]:
             my_err = 'the percentage for range adjustment is not valid (only 0.65, 0.70, 0.75, 0.80)'
         if my_df_i['axis_target'][i] not in [2, 3, 4, 5]:
