@@ -1,4 +1,4 @@
-# ih_datamadpt0420_project_final
+# ih_datamadpt0420_project_final [![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/aarvillag/ih_datamad0420_project_final/streamlit/first_app.py)
 
    ![](./botsAI.png)
 
